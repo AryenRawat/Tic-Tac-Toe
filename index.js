@@ -8,8 +8,6 @@ const cellElements = document.querySelectorAll('[data-cell]')
 const winmsg = document.querySelector('[data-winning-message-text]')
 let circleTurn
 
-
-
 startgame()
 
 restart.addEventListener('click',startgame)
@@ -51,16 +49,13 @@ function isDraw(){
 
 function endGame(draw){
     if(draw){
+            var audio = new Audio("sounds/lose.wav");
+            audio.play();
             winmsg.innerText='DRAW!'
-    }else{
-            winmsg.innerText = `${circleTurn ? "O's" :"X's"} wins!`
-    }
-    if(draw){
-        var audio = new Audio("sounds/lose.wav");
-        audio.play();
     }else{
         var audio=new Audio("sounds/win.mp3")
         audio.play();
+        winmsg.innerText = `${circleTurn ? "O's" :"X's"} wins!`
     }
     winm.classList.add('show');
 }
